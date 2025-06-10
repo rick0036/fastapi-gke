@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: fastapi-ingress
+  namespace: my-app
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /api/hello
+            pathType: Prefix
+            backend:
+              service:
+                name: fastapi-service
+                port:
+                  number: 80
+          - path: /api/dbcheck
+            pathType: Prefix
+            backend:
+              service:
+                name: fastapi-service
+                port:
+                  number: 80
